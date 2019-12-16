@@ -71,5 +71,6 @@ public class Training {
         autocomplete.click();
         BrowserUtils.wait(3);
         driver.close();
+
     }
 }
