@@ -17,6 +17,7 @@ public class WebTablesPractice {
 
     private WebDriver driver;
     private WebDriverWait wait;
+    // first commit
     //table
     //thead - table header (columns names)
     //tbody - table body (content)
