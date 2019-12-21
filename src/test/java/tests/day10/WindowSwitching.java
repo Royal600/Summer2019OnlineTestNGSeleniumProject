@@ -50,7 +50,7 @@ public class WindowSwitching {
         Set <String> WindowHandles=driver.getWindowHandles();
         //loop through the collection of windows
         for(String windowHandle: WindowHandles){
-            // if it is not and old window
+            // if it is not an old window
             if(!windowHandle.equals(oldWindow)){
                 //switch to that window
                 driver.switchTo().window(windowHandle);
@@ -67,7 +67,7 @@ public class WindowSwitching {
             // keep jumping from window to window
             driver.switchTo().window(windowHandle);
             //one we found page title, of the window that we need
-            if(driver.getTitle().equals(pageTitle)){
+            if(driver.getTitle().equals(pageTitle)) {
                 //just exit
                 //stop jumping
                 break;

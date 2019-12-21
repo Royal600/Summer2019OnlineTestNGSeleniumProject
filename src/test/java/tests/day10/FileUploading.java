@@ -10,6 +10,8 @@ import org.testng.annotations.Test;
 import utils.BrowserFactory;
 import utils.BrowserUtils;
 
+import java.io.File;
+
 public class FileUploading {
     private WebDriver driver;
 
@@ -22,14 +24,18 @@ public class FileUploading {
     @Test(description = "Verify that file was uploaded")
     public void test1(){
        driver.findElement(By.linkText("File Upload")).click();
-       driver.findElement(By.id("file-upload")).sendKeys("C:\\Users\\Royal Mirzayev\\Desktop\\task1.txt");
+       //provide path to the file
+        //insert your path to the file into sendKeys() method
+        // drag and drop file inside of Intellij and click right click in intellij and choose copy relative path and paste it in sendKeys
+        // hold shift and click on file and choose copy path, then switch back slashes\ to forward slashes
+       driver.findElement(By.id("file-upload")).sendKeys("C:/Users/Royal Mirzayev/Desktop/fileoploaderror.JPG");
        //click submit
-        driver.findElement(By.id("file-submit")).click();
+        driver.findElement(By.id("file-submit")).submit(); // or click();
         BrowserUtils.wait(4);
-        String expectedFileName="task1.txt";
-        String actualFileName=driver.findElement(By.id("uploaded-files")).getText();
+       String expectedFileName="fileoploaderror.JPG";
+       String actualFileName=driver.findElement(By.id("uploaded-files")).getText();
 
-        Assert.assertEquals(actualFileName,expectedFileName);
+     Assert.assertEquals(actualFileName,expectedFileName,"File Name is wrong");
     }
 
 
