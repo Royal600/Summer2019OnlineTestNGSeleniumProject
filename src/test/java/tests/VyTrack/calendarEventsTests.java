@@ -15,8 +15,10 @@ import utils.BrowserFactory;
 import java.util.concurrent.TimeUnit;
 
 public class calendarEventsTests {
+
     private WebDriver driver;
     private WebDriverWait wait;
+
     @BeforeMethod
     public void setup(){
         driver = BrowserFactory.getDriver("chrome");
@@ -29,15 +31,23 @@ public class calendarEventsTests {
         driver.get("https://qa1.vytrack.com/");
         driver.findElement(By.id("prependedInput")).sendKeys("storemanager85");
         driver.findElement(By.id("prependedInput2")).sendKeys("UserUser123", Keys.ENTER);
-        WebElement activitiesElement = driver.findElement(By.linkText("Activities"));
+
+        WebElement loaderMask=null;
+        if(driver.findElements ( By.cssSelector ("div[class='loader-mask shown']") ).size()>0){
+            loaderMask=driver.findElement(By.cssSelector("div[class='loader-mask shown']"));
+            wait.until(ExpectedConditions.invisibilityOf(loaderMask));
+        }
+
+        WebElement activitiesElement = driver.findElement(By.partialLinkText("Activities"));
         wait.until(ExpectedConditions.visibilityOf(activitiesElement));
         wait.until(ExpectedConditions.elementToBeClickable(activitiesElement));
         activitiesElement.click();
+
         WebElement calendarEventsElement = driver.findElement(By.linkText("Calendar Events"));
         wait.until(ExpectedConditions.visibilityOf(calendarEventsElement));
         wait.until(ExpectedConditions.elementToBeClickable(calendarEventsElement));
         calendarEventsElement.click();
-        WebElement loaderMask = driver.findElement(By.cssSelector("div[class='loader-mask shown']"));
+
         wait.until(ExpectedConditions.invisibilityOf(loaderMask));
     }
     @Test(description = "Verify page subtitle")
@@ -53,5 +63,6 @@ public class calendarEventsTests {
     @AfterMethod
     public void teardown(){
         driver.quit();
+
     }
 }

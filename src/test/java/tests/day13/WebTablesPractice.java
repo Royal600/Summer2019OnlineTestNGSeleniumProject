@@ -32,6 +32,7 @@ public class WebTablesPractice {
         //I recommend to use this wait, for any element, not only web table
         //wait for presence of table 1
         wait.until(ExpectedConditions.presenceOfElementLocated(By.id("table1")));
+
     }
     @Test(description = "Print table 1 data")
     public void test1() {
@@ -47,7 +48,7 @@ public class WebTablesPractice {
         //size = amount of elements
         int actualColumnNumber = driver.findElements(By.xpath("//table[@id='table1']//th")).size();
         int expectedColumnNumber = 6;
-        Assert.assertEquals(actualColumnNumber, expectedColumnNumber);
+        Assert.assertEquals(actualColumnNumber, expectedColumnNumber,"Number of Columns are wrong");
     }
     //to exclude first row (thead rows) = //table[@id='table1']//tbody//tr (5-1=4 rows)
     // "//" means any child, in this case ant tr element of the table
@@ -55,7 +56,7 @@ public class WebTablesPractice {
     public void test3() {
         int expectedRowCount = 5;
         int actualRowCount = driver.findElements(By.xpath("//table[@id='table1']//tr")).size();
-        Assert.assertEquals(actualRowCount, expectedRowCount);
+        Assert.assertEquals(actualRowCount, expectedRowCount,"The amount of rows are wrong.");
     }
     /**
      * Use findElements() to find all values from 2nd row
@@ -79,7 +80,7 @@ public class WebTablesPractice {
         //css selector alternative: table[id='table1'] tbody tr:nth-of-type(2) td
         //if index will exceed table size, you will not get any errors, list will be just empty
         //findElements() doesn't give NoSuchElementException, in any case.
-        int index = 1;
+        int index = 4;
         List<WebElement> row = driver.findElements(By.xpath("//table[@id='table1']//tbody//tr[" + index + "]//td"));
         for (WebElement cell : row) {
             System.out.println(cell.getText());
@@ -93,9 +94,11 @@ public class WebTablesPractice {
         WebElement cell = driver.findElement(By.xpath("//table[@id='table1']//tbody//tr[" + row + "]//td[" + column + "]"));
         String expectedEmail = "jdoe@hotmail.com";
         String actualEmail = cell.getText();
-        Assert.assertEquals(actualEmail, expectedEmail);
+        Assert.assertEquals(actualEmail, expectedEmail,"Email is wrong");
     }
-    /**
+
+
+    /*
      * Get all values from email column and verify that every value contains "@"
      * If no - fail test.
      */
