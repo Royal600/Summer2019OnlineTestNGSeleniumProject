@@ -62,7 +62,7 @@ public class dropdowns {
 //        <option value="MD">Maryland</option>
         //we can use tes, value or index for selection
         select.selectByValue("MD");
-        BrowserUtils.wait(2);
+        BrowserUtils.wait(5);
         Assert.assertEquals(select.getFirstSelectedOption().getText(), "Maryland");
     }
 
