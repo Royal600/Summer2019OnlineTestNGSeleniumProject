@@ -14,7 +14,7 @@ import utils.BrowserFactory;
 
 import java.util.concurrent.TimeUnit;
 
-public class calendarEventsTests {
+public class CalendarEventsTests {
 
     private WebDriver driver;
     private WebDriverWait wait;
